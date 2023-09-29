@@ -1,0 +1,62 @@
+CREATE TABLE USERS
+(
+    id       BIGSERIAL   NOT NULL
+        CONSTRAINT users_pkey PRIMARY KEY,
+    name     VARCHAR(20) NOT NULL,
+    surname  VARCHAR(20) NOT NULL,
+    username VARCHAR(40) NOT NULL,
+    password VARCHAR(60) NOT NULL,
+    role     VARCHAR(10) NOT NULL,
+    enabled  BOOLEAN     NOT NULL
+);
+
+CREATE TABLE DEPARTMENTS
+(
+    id           BIGSERIAL   NOT NULL
+        CONSTRAINT departments_pkey PRIMARY KEY,
+    name         VARCHAR(30) NOT NULL,
+    location     VARCHAR(30) NOT NULL,
+    visit_number VARCHAR(15),
+    description  VARCHAR(50)
+);
+
+CREATE TABLE USERS_DEPARTMENTS
+(
+    users_id       BIGSERIAL REFERENCES USERS (id),
+    departments_id BIGSERIAL REFERENCES DEPARTMENTS (id),
+    PRIMARY KEY (users_id, departments_id)
+);
+
+CREATE TABLE CONFIRMATION_CODES
+(
+    id           BIGSERIAL NOT NULL
+        CONSTRAINT codes_pkey PRIMARY KEY,
+    code         BIGINT    NOT NULL,
+    created_at   TIMESTAMP NOT NULL,
+    confirmed_at TIMESTAMP,
+    expired_at   TIMESTAMP NOT NULL,
+    user_id      BIGSERIAL NOT NULL REFERENCES USERS (id)
+);
+
+CREATE SEQUENCE USER_SEQUENCE
+    INCREMENT BY 1
+    START WITH 1
+    MINVALUE 1
+    NO MAXVALUE
+    CACHE 1;
+
+CREATE SEQUENCE DEPARTMENT_SEQUENCE
+    INCREMENT BY 1
+    START WITH 1
+    MINVALUE 1
+    NO MAXVALUE
+    CACHE 1;
+
+CREATE SEQUENCE CONFIRMATION_CODE_SEQUENCE
+    INCREMENT BY 1
+    START WITH 1
+    MINVALUE 1
+    NO MAXVALUE
+    CACHE 1;
+
+

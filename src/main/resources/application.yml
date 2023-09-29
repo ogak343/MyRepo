@@ -1,0 +1,37 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/sales
+    username: postgres
+    password: ogabek
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+  flyway:
+    baseline-on-migrate: true
+    locations: classpath:db/migration
+    schemas: public
+  mail:
+    host: smtp.gmail.com
+    port: 465
+    username: khamdamov343@gmail.com
+    password: xuobnozieptheclf
+    properties:
+      mail:
+        smtp:
+          auth: true
+          ssl.enable: true
+          starttls.enable: true
+          debug: true
+  application:
+    name:
+jwt:
+  secret-key: 7464e98b88a6a8a259696178ac37fef9931d0f0bdb47b639f773a0a3940627dd
+  access: 30  #in minutes
+server:
+  servlet:
+    context-path: /sales
