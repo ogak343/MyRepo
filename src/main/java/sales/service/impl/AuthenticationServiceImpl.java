@@ -84,7 +84,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 code,
                 LocalDateTime.now(),
                 LocalDateTime.now().plusMinutes(5),
-                user);
+                user.getId());
         codeRepository.save(confirmationCode);
         mailService.sendCode(code, user.getName(), user.getUsername());
         return String.format("Verification code was resent to %s", username);
@@ -140,7 +140,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 code,
                 LocalDateTime.now(),
                 LocalDateTime.now().plusMinutes(5),
-                savedEntity);
+                savedEntity.getId());
         codeRepository.save(confirmationCode);
 
         mailService.sendCode(code, request.getName(), request.getUsername());

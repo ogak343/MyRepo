@@ -2,7 +2,6 @@ package sales.mapper;
 
 import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Primary;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 import sales.entity.UserEntity;
 import sales.model.dto.UserDto;
@@ -29,8 +28,4 @@ public class UserMapperImpl implements UserMapper {
         mapper.update(user, userDto);
     }
 
-    @Override
-    public Page<UserDto> toPage(Page<UserEntity> entities) {
-        return mapper.toPage(entities);
-    }
 }

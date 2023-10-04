@@ -3,9 +3,6 @@ package sales.entity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.GenerationType;
@@ -34,13 +31,12 @@ public class ConfirmationCodeEntity {
     private LocalDateTime createdAt;
     private LocalDateTime confirmedAt;
     private LocalDateTime expiredAt;
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
-    private UserEntity user;
+    private Long userId;
 
-    public ConfirmationCodeEntity(Integer code, LocalDateTime createdAt, LocalDateTime expiredAt, UserEntity user) {
+    public ConfirmationCodeEntity(Integer code, LocalDateTime createdAt, LocalDateTime expiredAt, Long userId) {
         this.code = code;
         this.createdAt = createdAt;
         this.expiredAt = expiredAt;
-        this.user = user;
+        this.userId = userId;
     }
 }
